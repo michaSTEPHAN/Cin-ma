@@ -1,0 +1,120 @@
+-------------------------
+Exercice Cinéma - SQL
+-------------------------
+
+a. Informations d’un film (id_film) : titre, année, durée (au format HH:MM) et réalisateur
+
+SELECT f.titre_film, f.annee_sortie_film, SEC_TO_TIME(f.duree_film * 60) AS duree_film, i.prenom_individu, i.nom_individu
+FROM film f
+INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
+INNER JOIN individu i ON r.id_individu = i.id_individu
+WHERE f.id_film = 8;
+
+------------------------------------------------------------------------------------------------------------------------
+b. Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)
+
+SELECT f.titre_film, SEC_TO_TIME(f.duree_film * 60) AS duree_film
+FROM film f
+WHERE f.duree_film >= 135
+ORDER BY duree_film DESC 
+;
+
+------------------------------------------------------------------------------------------------------------------------
+c. Liste des films d’un réalisateur (en précisant l’année de sortie)
+
+SELECT f.titre_film, f.annee_sortie_film
+FROM film f
+INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
+INNER JOIN individu i ON r.id_individu = i.id_individu
+WHERE i.nom_individu = 'Spielberg'
+AND i.prenom_individu = 'Steven'
+;
+
+------------------------------------------------------------------------------------------------------------------------
+d. Nombre de films par genre (classés dans l’ordre décroissant)
+
+SELECT distinct g.libelle_genre, COUNT(*) AS nbreFilm
+FROM genre g
+INNER JOIN appartenir a ON g.id_genre = a.id_genre
+GROUP BY g.libelle_genre
+ORDER BY nbreFilm DESC
+;
+
+------------------------------------------------------------------------------------------------------------------------
+e. Nombre de films par réalisateur (classés dans l’ordre décroissant)
+
+SELECT i.prenom_individu, i.nom_individu, COUNT(*) AS nbreFilm
+FROM film f
+INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
+INNER JOIN individu i ON r.id_individu = i.id_individu
+GROUP BY i.prenom_individu, i.nom_individu
+ORDER BY nbreFilm DESC 
+;
+
+------------------------------------------------------------------------------------------------------------------------
+f. Casting d’un film en particulier (id_film) : nom, prénom des acteurs + sexe
+
+SELECT i.prenom_individu, i.nom_individu, i.sexe_individu
+FROM acteur a
+INNER JOIN jouer_dans jd ON jd.id_acteur = a.id_acteur
+INNER JOIN individu i ON i.id_individu = a.id_individu
+WHERE jd.id_film = 1
+;
+------------------------------------------------------------------------------------------------------------------------
+g. Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l’année de sortie (du film le plus récent au plus ancien)
+
+SELECT f.titre_film, f.annee_sortie_film, r.nom_role
+FROM film f
+INNER JOIN jouer_dans jd ON jd.id_film = f.id_film
+INNER JOIN role r ON r.id_role = jd.id_role
+WHERE jd.id_acteur = 1
+ORDER BY f.annee_sortie_film DESC 
+;
+
+------------------------------------------------------------------------------------------------------------------------
+h. Liste des personnes qui sont à la fois acteurs et réalisateurs
+
+SELECT i.prenom_individu, i.nom_individu
+FROM individu i
+INNER JOIN acteur a ON i.id_individu = a.id_individu
+INNER JOIN realisateur r ON i.id_individu = r.id_individu
+;
+
+------------------------------------------------------------------------------------------------------------------------
+i. Liste des films qui ont moins de 5 ans (classés du plus récent au plus ancien)
+
+SELECT f.titre_film, f.annee_sortie_film
+FROM film f
+WHERE YEAR(CURDATE())-f.annee_sortie_film <= 23
+ORDER BY f.annee_sortie_film DESC 
+;
+
+------------------------------------------------------------------------------------------------------------------------
+j. Nombre d’hommes et de femmes parmi les acteurs
+
+SELECT DISTINCT i.sexe_individu, COUNT(*) AS nbrePersonne
+FROM individu i
+INNER JOIN acteur a ON i.id_individu = a.id_individu
+GROUP BY i.sexe_individu
+;
+
+------------------------------------------------------------------------------------------------------------------------
+k. Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
+
+SELECT i.prenom_individu, i.nom_individu, TIMESTAMPDIFF(YEAR, i.date_naissance_individu , CURDATE()) AS ageActeur
+FROM individu i
+INNER JOIN acteur a ON a.id_individu = i.id_individu
+WHERE TIMESTAMPDIFF(YEAR, i.date_naissance_individu, CURDATE()) > 50
+;
+
+------------------------------------------------------------------------------------------------------------------------
+l. Acteurs ayant joué dans 3 films ou plus
+
+SELECT i.prenom_individu, i.nom_individu, COUNT(jd.id_film) AS nbreFilm
+FROM individu i
+INNER JOIN acteur a ON a.id_individu = i.id_individu
+INNER JOIN jouer_dans jd ON jd.id_acteur = a.id_acteur
+GROUP BY a.id_acteur
+HAVING nbreFilm >= 3
+;
+------------------------------------------------------------------------------------------------------------------------

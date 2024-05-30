@@ -1,0 +1,240 @@
+----------------------------------------------------------
+TABLE GENRE	ok
+----------------------------------------------------------
+
+INSERT INTO genre VALUES (1,'comédie');
+INSERT INTO genre VALUES (2,'drame');
+INSERT INTO genre VALUES (3,'fantastique');
+INSERT INTO genre VALUES (4,'horreur');
+INSERT INTO genre VALUES (5,'historique');
+INSERT INTO genre VALUES (6,'péplum');
+INSERT INTO genre VALUES (7,'science-fiction');
+INSERT INTO genre VALUES (8,'thriller');
+INSERT INTO genre VALUES (9,'wester');
+INSERT INTO genre VALUES (10,'action');
+INSERT INTO genre VALUES (11,'aventure');
+INSERT INTO genre VALUES (12,'muet');
+INSERT INTO genre VALUES (13,'documentaire');
+INSERT INTO genre VALUES (14,'catastrophe');
+INSERT INTO genre VALUES (15,'guerre');
+
+----------------------------------------------------------
+TABLE APPARTENIR ok
+----------------------------------------------------------
+INSERT INTO appartenir VALUES (1,2);
+INSERT INTO appartenir VALUES (2,15);
+INSERT INTO appartenir VALUES (3,2);
+INSERT INTO appartenir VALUES (4,1);
+INSERT INTO appartenir VALUES (5,5);
+INSERT INTO appartenir VALUES (6,2);
+INSERT INTO appartenir VALUES (7,1);
+INSERT INTO appartenir VALUES (8,5);
+INSERT INTO appartenir VALUES (9,15);
+INSERT INTO appartenir VALUES (10,15);
+INSERT INTO appartenir VALUES (11,15);
+
+----------------------------------------------------------
+TABLE FILM ok
+----------------------------------------------------------
+INSERT INTO film VALUES (1,142,'synopsis Forrest Gump',5,'Forrest Gump',1994,'',1);
+INSERT INTO film VALUES (2,163,'syn soldat Ryan',5,'Il faut sauver le soldat Ryan',1998,'',2);
+INSERT INTO film VALUES (3,188,'syn la ligne verte',5,'La ligne verte',1999'',,3);
+INSERT INTO film VALUES (4,141,'syn arrete-moi si tu peux',4,'Arrete-moi si tu peux',2002,'',2);
+INSERT INTO film VALUES (5,140,'syn Appolo 13',4,'Appolo 13',1995,'',4);
+INSERT INTO film VALUES (6,142,'syn les évadés',3,'Les évadés',1994,'',3);
+INSERT INTO film VALUES (7,80,'syn le diner de cons',3,'Le diner de cons',1998,'',5);
+INSERT INTO film VALUES (8,171,'syn gladiator',5,'Gladiator',2000,'',6);
+INSERT INTO film VALUES (9,140,'syn apocalypse now',5,'Apocalypse now',1979,'',7);
+INSERT INTO film VALUES (10,120,'syn platoon',4,'Platoon',1986,'',8);
+INSERT INTO film VALUES (11,131,'syn stalingrad',4,'Stalingrad',2001,'',9);
+
+----------------------------------------------------------
+TABLE INDIVIDU ok
+----------------------------------------------------------
+INSERT INTO individu VALUES (1,'Zemeckis','Robert','M','1975-04-14');
+INSERT INTO individu VALUES (2,'Spielberg','Steven','M','1975-04-14');
+INSERT INTO individu VALUES (3,'Darabont','Frank','M','1975-04-14');
+INSERT INTO individu VALUES (4,'Howard','Ron','M','1975-04-14');
+INSERT INTO individu VALUES (5,'Veber','Francis','M','1975-04-14');
+INSERT INTO individu VALUES (6,'Scott','Ridley','M','1975-04-14');
+INSERT INTO individu VALUES (7,'Coppola','Francis Ford','M','1975-04-14');
+INSERT INTO individu VALUES (8,'stone','Oliver','M','1975-04-14');
+INSERT INTO individu VALUES (9,'Annaud','Jean-Jacques','M','1975-04-14');
+INSERT INTO individu VALUES (10,'Hanks','Tom','M','1975-04-14');
+INSERT INTO individu VALUES (11,'Wright','Robin','F','1975-04-14');
+INSERT INTO individu VALUES (12,'Sinise','Gary','M','1975-04-14');
+INSERT INTO individu VALUES (13,'Burns','Edward','M','1975-04-14');
+INSERT INTO individu VALUES (14,'Sizemore','Tom','M','1975-04-14');
+INSERT INTO individu VALUES (15,'Pepper','Barry','M','1975-04-14');
+INSERT INTO individu VALUES (16,'Damon','Matt','M','1975-04-14');
+INSERT INTO individu VALUES (17,'Michael Clarke','Duncan','M','1975-04-14');
+INSERT INTO individu VALUES (18,'David','Morse','M','1975-04-14');
+INSERT INTO individu VALUES (19,'Leonardo','DiCaprio','M','1975-04-14');
+INSERT INTO individu VALUES (20,'Christopher','Walken','M','1975-04-14');
+INSERT INTO individu VALUES (21,'Amy','Adams','F','1975-04-14');
+INSERT INTO individu VALUES (22,'Nathalie','Baye','F','1975-04-14');
+INSERT INTO individu VALUES (23,'Kevin','Bacon','M','1975-04-14');
+INSERT INTO individu VALUES (24,'Bill','Paxton','M','1975-04-14');
+INSERT INTO individu VALUES (25,'Gary','Sinise','M','1975-04-14');
+INSERT INTO individu VALUES (26,'Ed','Harris','M','1975-04-14');
+INSERT INTO individu VALUES (27,'Tim','Robbins','M','1975-04-14');
+INSERT INTO individu VALUES (28,'Morgan','Freeman','M','1975-04-14');
+INSERT INTO individu VALUES (29,'Jacques','Villeret','M','1975-04-14');
+INSERT INTO individu VALUES (30,'Thierry','Lhermitte','M','1975-04-14');
+INSERT INTO individu VALUES (31,'Francis','Huster','M','1975-04-14');
+INSERT INTO individu VALUES (32,'Daniel','Prévost','M','1975-04-14');
+INSERT INTO individu VALUES (33,'Russell','Crowe','M','1975-04-14');
+INSERT INTO individu VALUES (34,'Joaquin','Phoenix','M','1975-04-14');
+INSERT INTO individu VALUES (35,'Martin','Sheen','M','1975-04-14');
+INSERT INTO individu VALUES (36,'Frederic','Forrest','M','1975-04-14');
+INSERT INTO individu VALUES (37,'Sam','Bottoms','M','1975-04-14');
+INSERT INTO individu VALUES (38,'Albert','Hall','M','1975-04-14');
+INSERT INTO individu VALUES (39,'Laurence','Fishburne','M','1975-04-14');
+INSERT INTO individu VALUES (40,'Tom','Berenger','M','1975-04-14');
+INSERT INTO individu VALUES (41,'Willem','Dafoe','M','1975-04-14');
+INSERT INTO individu VALUES (42,'Charlie','Sheen','M','1975-04-14')
+INSERT INTO individu VALUES (43,'Jude','Law','M','1975-04-14');
+INSERT INTO individu VALUES (44,'Joseph','Fiennes','M','1975-04-14');
+INSERT INTO individu VALUES (45,'Rachel','Weisz','F','1975-04-14');
+INSERT INTO individu VALUES (46,'Guillaume','Canet','M','1975-04-14');
+INSERT INTO individu VALUES (47,'Alain','Chabat','M','1975-04-14');
+
+----------------------------------------------------------
+TABLE REALISATEUR ok
+----------------------------------------------------------
+INSERT INTO realisateur VALUES (1,1);
+INSERT INTO realisateur VALUES (2,2);
+INSERT INTO realisateur VALUES (3,3);
+INSERT INTO realisateur VALUES (4,4);
+INSERT INTO realisateur VALUES (5,5);
+INSERT INTO realisateur VALUES (6,6);
+INSERT INTO realisateur VALUES (7,7);
+INSERT INTO realisateur VALUES (8,8);
+INSERT INTO realisateur VALUES (9,9);
+INSERT INTO realisateur VALUES (10,46);
+INSERT INTO realisateur VALUES (11,47);
+
+----------------------------------------------------------
+TABLE ACTEUR ok
+----------------------------------------------------------
+INSERT INTO acteur VALUES (1,10);
+INSERT INTO acteur VALUES (2,11);
+INSERT INTO acteur VALUES (3,12);
+INSERT INTO acteur VALUES (4,13);
+INSERT INTO acteur VALUES (5,14);
+INSERT INTO acteur VALUES (6,15);
+INSERT INTO acteur VALUES (7,16);
+INSERT INTO acteur VALUES (8,17);
+INSERT INTO acteur VALUES (9,18);
+INSERT INTO acteur VALUES (10,19);
+INSERT INTO acteur VALUES (11,20);
+INSERT INTO acteur VALUES (12,21);
+INSERT INTO acteur VALUES (13,22);
+INSERT INTO acteur VALUES (14,23);
+INSERT INTO acteur VALUES (15,24);
+INSERT INTO acteur VALUES (16,25);
+INSERT INTO acteur VALUES (17,26);
+INSERT INTO acteur VALUES (18,27);
+INSERT INTO acteur VALUES (19,28);
+INSERT INTO acteur VALUES (20,29);
+INSERT INTO acteur VALUES (21,30);
+INSERT INTO acteur VALUES (22,31);
+INSERT INTO acteur VALUES (23,32);
+INSERT INTO acteur VALUES (24,33);
+INSERT INTO acteur VALUES (25,34);
+INSERT INTO acteur VALUES (26,35);
+INSERT INTO acteur VALUES (27,36);
+INSERT INTO acteur VALUES (28,37);
+INSERT INTO acteur VALUES (29,38);
+INSERT INTO acteur VALUES (30,39);
+INSERT INTO acteur VALUES (31,40);
+INSERT INTO acteur VALUES (32,41);
+INSERT INTO acteur VALUES (33,42);
+INSERT INTO acteur VALUES (34,43);
+INSERT INTO acteur VALUES (35,44);
+INSERT INTO acteur VALUES (36,45);
+INSERT INTO acteur VALUES (37,46);
+INSERT INTO acteur VALUES (38,47);
+
+----------------------------------------------------------
+TABLE ROLE ok
+----------------------------------------------------------
+INSERT INTO role VALUES (1,'Forrest Gump');
+INSERT INTO role VALUES (2,'Jenny');
+INSERT INTO role VALUES (3,'Lieutenant Dan');
+INSERT INTO role VALUES (4,'James Ryan');
+INSERT INTO role VALUES (5,'capitaine John H. Miller');
+INSERT INTO role VALUES (6,'Paul Edgecomb');
+INSERT INTO role VALUES (7,'John Coffey');
+INSERT INTO role VALUES (8,'Brutus ');
+INSERT INTO role VALUES (9,'Frank Abagnale');
+INSERT INTO role VALUES (10,'Frank Abagnale Sr');
+INSERT INTO role VALUES (11,'Carl Hanratty');
+INSERT INTO role VALUES (12,'Paula Abagnale');
+INSERT INTO role VALUES (13,'James Lovell');
+INSERT INTO role VALUES (14,'Jack Swigert');
+INSERT INTO role VALUES (15,'Fred Haise');
+INSERT INTO role VALUES (16,'Ken Mattingly');
+INSERT INTO role VALUES (17,' Gene Kranz');
+INSERT INTO role VALUES (18,'Andy Dufresne');
+INSERT INTO role VALUES (19,'Red');
+INSERT INTO role VALUES (20,'François Pignon');
+INSERT INTO role VALUES (21,'Pierre Brochant');
+INSERT INTO role VALUES (22,'Just Leblanc');
+INSERT INTO role VALUES (23,'Lucien Cheval');
+INSERT INTO role VALUES (24,'Maximus Decimus Meridius');
+INSERT INTO role VALUES (25,'Commode');
+INSERT INTO role VALUES (26,'le capitaine Benjamin L. Willard');
+INSERT INTO role VALUES (27,'Jay Hicks');
+INSERT INTO role VALUES (28,' Lance Johnson');
+INSERT INTO role VALUES (29,'Chief');
+INSERT INTO role VALUES (30,'Tyronne Miller');
+INSERT INTO role VALUES (31,'le soldat Chris Taylor');
+INSERT INTO role VALUES (32,'le sergent Elias Grodin');
+INSERT INTO role VALUES (33,'Vassili Zaïtsev');
+INSERT INTO role VALUES (34,'le commissaire Danilov');
+INSERT INTO role VALUES (35,'Tania Tchernova');
+INSERT INTO role VALUES (36,'major Erwin König');
+
+----------------------------------------------------------
+TABLE JOUER_DANS F / A / R ok
+----------------------------------------------------------
+INSERT INTO jouer_dans VALUES (1,1,1);
+INSERT INTO jouer_dans VALUES (1,1,2);
+INSERT INTO jouer_dans VALUES (1,1,3);
+INSERT INTO jouer_dans VALUES (2,1,4);
+INSERT INTO jouer_dans VALUES (2,1,5);
+INSERT INTO jouer_dans VALUES (3,1,6);
+INSERT INTO jouer_dans VALUES (3,1,7);
+INSERT INTO jouer_dans VALUES (3,1,8);
+INSERT INTO jouer_dans VALUES (4,1,9);
+INSERT INTO jouer_dans VALUES (4,1,10);
+INSERT INTO jouer_dans VALUES (4,1,11);
+INSERT INTO jouer_dans VALUES (4,1,12);
+INSERT INTO jouer_dans VALUES (5,1,13);
+INSERT INTO jouer_dans VALUES (5,1,14);
+INSERT INTO jouer_dans VALUES (5,1,15);
+INSERT INTO jouer_dans VALUES (5,1,16);
+INSERT INTO jouer_dans VALUES (5,1,17);
+INSERT INTO jouer_dans VALUES (6,1,18);
+INSERT INTO jouer_dans VALUES (6,1,19);
+INSERT INTO jouer_dans VALUES (7,1,20);
+INSERT INTO jouer_dans VALUES (7,1,21);
+INSERT INTO jouer_dans VALUES (7,1,22);
+INSERT INTO jouer_dans VALUES (7,1,23);
+INSERT INTO jouer_dans VALUES (8,1,24);
+INSERT INTO jouer_dans VALUES (8,1,25);
+INSERT INTO jouer_dans VALUES (9,1,26);
+INSERT INTO jouer_dans VALUES (9,1,27);
+INSERT INTO jouer_dans VALUES (9,1,28);
+INSERT INTO jouer_dans VALUES (9,1,29);
+INSERT INTO jouer_dans VALUES (9,1,30);
+INSERT INTO jouer_dans VALUES (10,1,31);
+INSERT INTO jouer_dans VALUES (10,1,32);
+INSERT INTO jouer_dans VALUES (11,1,33);
+INSERT INTO jouer_dans VALUES (11,1,34);
+INSERT INTO jouer_dans VALUES (11,1,35);
+INSERT INTO jouer_dans VALUES (11,1,36);
+
+
+
