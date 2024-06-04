@@ -2,23 +2,15 @@
     ob_start();
 ?>
 
-<p class="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> genre</p>
+<div class="liste_genres">
+    <?php foreach ($requete->fetchAll() as $genre) { ?>
+        <p class="nom_genre">            
+            <?= $genre["libelle_genre"] ?>
+        </p> 
+    <?php } ?>    
+</div>
 
-<table class="uk-table uk-table-striped">
-    <thead>
-        <th>GENRE</th>        
-    </thead>  
-    <body>
-        <?php foreach ($requete->fetchAll() as $genre) { ?>
-            <tr>
-                <td><?= $genre["libelle_genre"] ?></td>
-            </tr>
-        <?php } ?>    
-    </body>
-</table>
-
-<?php
-  
+<?php  
     $titre = "Liste des genres de film";
     $titre_secondaire = "Liste des genre de film";
     $contenu = ob_get_clean();

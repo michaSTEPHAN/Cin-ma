@@ -2,22 +2,14 @@
     ob_start();
 ?>
 
-<p class="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> films</p>
-
-<table class="uk-table uk-table-striped">
-    <thead>
-        <th>PRENOM</th>
-        <th>NOM</th>
-    </thead>  
-    <body>
-        <?php foreach ($requete->fetchAll() as $realisateur) { ?>
-            <tr>
-                <td><?= $realisateur["prenom_individu"] ?></td>
-                <td><?= $realisateur["nom_individu"] ?></td>
-            </tr>
-        <?php } ?>    
-    </body>
-</table>
+<div class="liste_realisateurs">
+    <?php foreach ($requete->fetchAll() as $realisateur) { ?>
+        <figure>
+            <img class="img_realisateur" src="<?= $realisateur['photo_individu'] ?>">
+            <figcaption class="nom_realisateur"><?= $realisateur["prenom_individu"] ?> <?= $realisateur["nom_individu"] ?></figcaption>
+        </figure> 
+    <?php } ?>    
+</div>
 
 <?php
   

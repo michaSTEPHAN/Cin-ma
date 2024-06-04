@@ -7,9 +7,7 @@
         <meta name="description"
             content="Mov/ies, le site référence qui vous donne les meilleures informations de vos films préférés !">
         <meta name="theme-color" content="#101C28" />
-        <title>
-            <?= $titre ?>
-        </title>
+        <title><?= $titre ?></title>
         <link rel="stylesheet" href="public/css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,14 +18,30 @@
     </head>
 
     <body>
-        <div id="wrapper" class="uk-conatiner uk-container-expand">
-            <main>
-                <div id="contenu">
-                <h1 class="uk-heading-divider">PDO cinema</h1>
-                <h2 class="uk-heading-bullet"><?= $titre_secondaire ?></h2>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.php" class="nav_links nav_link1">Accueil</a></li>
+                    <li><a href="index.php?action=listFilms" class="nav_links nav_link2">Films</a></li>
+                    <li><a href="index.php?action=listGenres" class="nav_links nav_link3">Genres</a></li>
+                    <li><a href="index.php?action=listActeurs" class="nav_links nav_link4">Acteurs</a></li>
+                    <li><a href="index.php?action=listRealisateurs" class="nav_links nav_link5">Réalisateurs</a></li>
+                    <li><a href="index.php?action=listRoles" class="nav_links nav_link5">Rôles</a></li>                                    
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div id="contenu">
+                <h1 class="titre-principal">MY FAVORITE MOVIES</h1>
+                <h2 class="titre-secondaire"><?= $titre_secondaire ?></h2>
                 <?= $contenu ?>
-                </div>
-            </main>
+            </div>
+        </main>
+
+        <footer>
+        </footer>
+            
         </div>        
     </body>
 </html>

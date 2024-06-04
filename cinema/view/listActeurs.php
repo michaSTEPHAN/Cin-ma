@@ -2,25 +2,16 @@
     ob_start();
 ?>
 
-<p class="uk-label uk-label-warning"> Il y a <?= $requete->rowCount() ?> films</p>
+<div class="liste_acteurs">
+    <?php foreach ($requete->fetchAll() as $acteur) { ?>
+        <figure>
+            <img class="img_acteur" src="<?= $acteur['photo_individu'] ?>">
+            <figcaption class="nom_acteur"><?= $acteur["prenom_individu"] ?> <?= $acteur["nom_individu"] ?></figcaption>
+        </figure> 
+    <?php } ?>    
+</div>
 
-<table class="uk-table uk-table-striped">
-    <thead>
-        <th>PRENOM</th>
-        <th>NOM</th>
-    </thead>  
-    <body>
-        <?php foreach ($requete->fetchAll() as $acteur) { ?>
-            <tr>
-                <td><?= $acteur["prenom_individu"] ?></td>
-                <td><?= $acteur["nom_individu"] ?></td>
-            </tr>
-        <?php } ?>    
-    </body>
-</table>
-
-<?php
-  
+<?php  
     $titre = "Liste des acteurs";
     $titre_secondaire = "Liste des acteurs";
     $contenu = ob_get_clean();
