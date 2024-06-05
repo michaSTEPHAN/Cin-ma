@@ -12,8 +12,29 @@ main {
     background-color: rgb(192, 250, 250);
 }
 
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   HEADER                                             */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
 /* -------------------------------------------- */
-/* Affichage du HEADER                          */
+/* Affichage du logo                            */
+/* -------------------------------------------- */
+/* .header-menu {
+    display: flex;
+} */
+/* .header-menu i {
+    margin-top: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: 50px;
+} */
+/* .header-logo {
+    margin-left: 20px;
+    margin-right: 600px;
+} */
+
+/* -------------------------------------------- */
+/* Affichage du menu                            */
 /* -------------------------------------------- */
 header {
     padding: 20px 0px 20px 0px;
@@ -22,6 +43,7 @@ header {
 nav {
     text-align: center;
     font-size: 16px;
+    vertical-align: middle;
 }
 a {
     text-decoration: none;
@@ -43,6 +65,7 @@ nav ul li {
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   TITRES                                             */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 /* -------------------------------------------- */
@@ -60,8 +83,8 @@ nav ul li {
     margin-bottom: 20px;
 }
 
-
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   FILMS                                              */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 /* -------------------------------------------- */
@@ -73,7 +96,8 @@ nav ul li {
     gap: 20px;
     justify-content: space-around;
     padding-bottom: 20px;
-    
+    margin-left: 200px;
+    margin-right: 200px;
 }
 .img_film {
     width: 300px;
@@ -91,11 +115,12 @@ figcaption {
     font-style: italic;
 }
 .titre_film {
-    text-align: center;
+    text-align: center;    
     color: rgb(29, 106, 240);
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   ACTEURS                                            */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 /* -------------------------------------------- */
@@ -107,8 +132,8 @@ figcaption {
     gap: 30px;
     justify-content: space-around;
     padding-bottom: 20px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 .img_acteur {
     width: 200px;
@@ -130,6 +155,7 @@ figure .nom_acteur {
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   REALISATEURS                                       */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
 /* -------------------------------------------- */
@@ -141,8 +167,8 @@ figure .nom_acteur {
     gap: 30px;
     justify-content: space-around;
     padding-bottom: 20px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 400px;
+    margin-right: 400px;
 }
 .img_realisateur {
     width: 200px;
@@ -164,7 +190,18 @@ figure .nom_realisateur {
 }    
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   GENRES                                             */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+/* -------------------------------------------- */
+/* Affichage des icones ajout/modif/suppr       */
+/* -------------------------------------------- */
+.img_ajouter,
+.img_modifier,
+.img_supprimer {
+    width: 40px;
+    height: 40px;
+}
 
 /* -------------------------------------------- */
 /* Affichage de la liste des genres             */
@@ -172,29 +209,49 @@ figure .nom_realisateur {
 .liste_genres {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: space-around;
     padding-bottom: 20px;
     margin-top: 40px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 .nom_genre {
-    background-color: rgb(246, 164, 236);
+    background-color: rgb(242, 243, 190);
     width: 200px;
-    height: 80px;
+    height: 60px;
     text-align: center;
     vertical-align: middle;
-    padding: 30px 10px 10px 10px;
+    padding: 25px 10px 10px 10px;
     border-radius: 10px;
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                       ROLES                                          */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.liste_roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    margin-top: 40px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.libRole {
+    width: 250px;
+    height: 60px;
+    background-color: rgb(242, 243, 190);
+    text-align: center;
+    padding: 25px 10px 10px 10px;
+    border-radius: 10px;
+}
 
-/* -------------------------------------------- */
-/* Affichage du détail d'un film                */
-/* -------------------------------------------- */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                   DETAIL DU FILM                                     */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 .detail_film {
     display: flex;
     flex-wrap: wrap;
@@ -209,37 +266,53 @@ figure .nom_realisateur {
     border-radius: 25px;
     border: 1px solid;
 }
-
 .info_film {
     width: 200px;
     margin-bottom: 3px;
 }
-
 .titre_synopsis_film,
 .titre_info_film {
     text-align: center;
     margin-bottom: 10px;
 }
-.info3_film {
+.info4_film {
     margin-bottom: 100px;
 }
 .info1_film,
 .info2_film,
 .info2bis_film,
-.info3_film {
+.info3_film,
+.info4_film {
     display: flex;
 }
 .synopsis_film {
     width: 500px;
     text-align: justify;
 }
-.acteurs_du_film {
-    display: flex;
-    gap: 20px;
-}
+
+/* -------------------------------------------- */
+/* Réalisateur du film                          */
+/* -------------------------------------------- */
 .realisateur_film {    
     display: flex;
+    justify-content: center;
     margin-bottom: 20px;
+}
+.dnaiss_realisateur{
+    text-align: center;
+    color: rgb(42, 232, 42);
+}
+.titre_det_realisateur {
+    text-align: center;
+}
+
+/* -------------------------------------------- */
+/* Acteurs du film                              */
+/* -------------------------------------------- */
+.acteurs_du_film {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 .role_acteur,
 .dnaiss_acteur{
@@ -251,7 +324,6 @@ figure .nom_realisateur {
     font-style: italic;
     font-size: 18px;
 }
-.dnaiss_realisateur{
+.titre_det_acteur {
     text-align: center;
-    color: rgb(42, 232, 42);
 }

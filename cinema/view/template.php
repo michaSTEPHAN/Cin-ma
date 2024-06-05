@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="public/css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
@@ -19,16 +20,23 @@
 
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href="index.php" class="nav_links nav_link1">Accueil</a></li>
-                    <li><a href="index.php?action=listFilms" class="nav_links nav_link2">Films</a></li>
-                    <li><a href="index.php?action=listGenres" class="nav_links nav_link3">Genres</a></li>
-                    <li><a href="index.php?action=listActeurs" class="nav_links nav_link4">Acteurs</a></li>
-                    <li><a href="index.php?action=listRealisateurs" class="nav_links nav_link5">Réalisateurs</a></li>
-                    <li><a href="index.php?action=listRoles" class="nav_links nav_link5">Rôles</a></li>                                    
-                </ul>
-            </nav>
+            <!-- <div class="header-menu"> -->
+                <!-- <div class="header-logo">
+                    <i class="fa-solid fa-clapperboard"></i>   
+                </div> -->
+                <!-- <div class="header-lib"> -->
+                    <nav>
+                        <ul>
+                            <li><a href="index.php" class="nav_links nav_link1">Accueil</a></li>
+                            <li><a href="index.php?action=listFilms" class="nav_links nav_link2">Films</a></li>
+                            <li><a href="index.php?action=listGenres" class="nav_links nav_link3">Genres</a></li>
+                            <li><a href="index.php?action=listActeurs" class="nav_links nav_link4">Acteurs</a></li>
+                            <li><a href="index.php?action=listRealisateurs" class="nav_links nav_link5">Réalisateurs</a></li>
+                            <li><a href="index.php?action=listRoles" class="nav_links nav_link5">Rôles</a></li>                             
+                        </ul>
+                    </nav>
+                <!-- </div> -->
+            <!-- </div> -->
         </header>
 
         <main>

@@ -5,7 +5,7 @@
 <!-- ----------------------------------------------------- -->
 <!-- Affichage de la liste des films sous forme d'affiches -->
 <!-- ----------------------------------------------------- -->
-<div class="liste_films">
+<div class="liste_films">    
     <?php foreach ($requete->fetchAll() as $film) { ?>
         <figure>
             <!-- <h1><?= $film['id_film'] ?></h1> -->

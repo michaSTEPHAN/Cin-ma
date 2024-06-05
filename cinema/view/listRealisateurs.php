@@ -5,7 +5,9 @@
 <div class="liste_realisateurs">
     <?php foreach ($requete->fetchAll() as $realisateur) { ?>
         <figure>
-            <img class="img_realisateur" src="<?= $realisateur['photo_individu'] ?>">
+            <a href="index.php?action=detailRealisateur&id=<?= $realisateur['id_individu'] ?>">
+                <img class="img_realisateur" src="<?= $realisateur['photo_individu'] ?>">
+            </a>    
             <figcaption class="nom_realisateur"><?= $realisateur["prenom_individu"] ?> <?= $realisateur["nom_individu"] ?></figcaption>
         </figure> 
     <?php } ?>    

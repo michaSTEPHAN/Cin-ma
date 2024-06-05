@@ -1,7 +1,8 @@
 <?php
     ob_start();
     $film    = $detailFilms->fetch();
-    $genre   = $genreFilm->fetch();      
+    $genres  = $genreFilm->fetchAll();
+    $acteurs = $acteursFilms->fetchAll()    
 ?>
 
 <!-- ----------------------------------------------------- -->
@@ -27,7 +28,13 @@
         </div>
         <div class="info3_film">
             <p class = "info_film">Genre</p>
-            <p class = "film_data"><?= $genre['libelle_genre'] ?></p>
+            <?php foreach ($genres as $genre) { ?>    
+                <p class = "film_data"><?= $genre['libelle_genre']?>, </p>
+            <?php } ?> 
+        </div>
+        <div class="info4_film">
+            <p class = "info_film">Note</p>
+            <p class = "film_data"><?= $film['note_film'] ?> / 5</p>
         </div>
         <p class = "titre_synopsis_film">SYNOPSIS</p>
         <p class = "synopsis_film"><?= $film['synopsis_film'] ?></p>
@@ -41,7 +48,9 @@
 <div class="realisateur_film">
     <figure>
         <h2 class="titre_det_realisateur">Le réalisateur</h2>
-        <img class="img_realisateur" src="<?= $film['photo_individu'] ?>">
+        <a href="index.php?action=detailRealisateur&id=<?= $film['id_realisateur'] ?>">
+            <img class="img_realisateur" src="<?= $film['photo_individu'] ?>">
+        </a>
         <p class="nom_realisateur"><?= $film['personne'] ?></p>
         <p class="dnaiss_realisateur"><?= $film['date_naissance_individu'] ?></p>
     </figure> 
@@ -53,9 +62,11 @@
 <div class="acteurs_film">    
     <h2 class="titre_det_acteur">Les acteurs</h2>
     <div class="acteurs_du_film">
-        <?php foreach ($acteursFilms->fetchAll() as $acteur) { ?>    
-            <figure>            
-                <img class="img_realisateur" src="<?= $acteur['photo_individu'] ?>">
+        <?php foreach ($acteurs as $acteur) { ?>    
+            <figure> 
+                <a href="index.php?action=detailActeur&id=<?= $acteur['id_acteur'] ?>">               
+                    <img class="img_realisateur" src="<?= $acteur['photo_individu'] ?>">       
+                </a>         
                 <p class="nom_acteur"><?= $acteur['individu'] ?></p>
                 <p class="dnaiss_acteur"><?= $acteur['date_naissance_individu'] ?></p>
                 <p class="role_acteur">"<?= $acteur['nom_role'] ?>"</p>
