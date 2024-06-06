@@ -27,10 +27,13 @@
             <p class = "film_data"><?= $film['dureeFormat'] ?></p>
         </div>
         <div class="info3_film">
-            <p class = "info_film">Genre</p>
-            <?php foreach ($genres as $genre) { ?>    
-                <p class = "film_data"><?= $genre['libelle_genre']?>, </p>
-            <?php } ?> 
+            <p class = "info_film">Genre</p>            
+            <?php $listGenre = "" ?>
+            <?php foreach ($genres as $genre) {
+                $listGenre .= $genre['libelle_genre']."-";
+            } ?> 
+            <?php $listGenre = substr($listGenre,0,strlen($listGenre)-1) ?>
+            <p class = "film_data"><?= $listGenre ?></p>
         </div>
         <div class="info4_film">
             <p class = "info_film">Note</p>

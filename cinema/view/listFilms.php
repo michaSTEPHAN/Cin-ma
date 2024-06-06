@@ -8,7 +8,6 @@
 <div class="liste_films">    
     <?php foreach ($requete->fetchAll() as $film) { ?>
         <figure>
-            <!-- <h1><?= $film['id_film'] ?></h1> -->
             <a href="index.php?action=detailFilms&id=<?= $film['id_film'] ?>">
                 <img class="img_film" src="<?= $film['affiche_film'] ?>">
             </a>

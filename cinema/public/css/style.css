@@ -250,6 +250,74 @@ figure .nom_realisateur {
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                 DETAIL DU ROLE                                       */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.info1_role,
+.info2_role {
+    display: flex;
+}
+.titre_det_role {
+    text-align: center;
+}
+.role_nom {
+    width: 200px;
+    margin-bottom: 3px;
+}
+.info2_role,
+.info1_role {
+    justify-content: center;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                              DETAIL DU REALISATEUR                                   */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.photo_rea{
+    text-align: center;
+}
+.info1_rea,
+.info2_rea {
+    display: flex;
+}
+.info_rea {
+    width: 200px;
+    margin-bottom: 3px;
+}
+
+.titre_info_rea,
+.rea_films,
+.titre_rea_film {
+    text-align: center;
+}
+.info2_rea {
+    justify-content: center;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                 DETAIL DE L'ACTEUR                                   */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.photo_act{
+    text-align: center;
+}
+.info1_act,
+.info2_act {
+    display: flex;
+}
+.info_act {
+    width: 200px;
+    margin-bottom: 3px;
+}
+
+.titre_info_act,
+.act_films,
+.titre_act_film {
+    text-align: center;
+}
+.info2_act {
+    justify-content: center;
+}
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 /*                                   DETAIL DU FILM                                     */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 .detail_film {

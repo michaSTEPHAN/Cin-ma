@@ -3,21 +3,19 @@
 ?>
 
 <div class="gestion_bouton">    
-    <a href="index.php?action=ajoutGenre">
+    <a href="index.php?action=addGenre">
         <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
-    </a>
-    <a href="index.php?action=modifGenre">
-        <img class="img_modifier" src="public\img\icones\modifier.webp"></img>
-    </a>
-    <a href="index.php?action=suppressionGenre">
-        <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
     </a>
 </div>
 
+<!-- <a class="add_btn" href="index.php?action=addGenre">Ajouter</a> -->
+
 <div class="liste_genres">
     <?php foreach ($requete->fetchAll() as $genre) { ?>
-        <p class="nom_genre">            
+        <p class="nom_genre">  
+        <a href="index.php?action=detailGenre&id=<?= $genre['id_genre'] ?>">     
             <?= $genre["libelle_genre"] ?>
+        </a>
         </p> 
     <?php } ?>    
 </div>

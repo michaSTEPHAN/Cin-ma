@@ -5,6 +5,10 @@ use Model\Connect;
 
 class CinemaController {
 
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+//  AFFICHAGE DES LISTES                         
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+    
     //------------------------------------
     // Liste des films
     //------------------------------------
@@ -63,7 +67,8 @@ class CinemaController {
     $requete = $pdo->query("
         SELECT CONCAT(i.prenom_individu, ' ', i.nom_individu) AS personne, 
         r.nom_role, 
-        f.titre_film
+        f.titre_film,
+        r.id_role
         FROM individu i
         INNER JOIN acteur a ON a.id_individu = i.id_individu
         INNER JOIN jouer_dans jd ON jd.id_acteur = a.id_acteur
@@ -73,15 +78,64 @@ class CinemaController {
         require "view/listRoles.php";
     }
 
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+//  AFFICHAGE DES DETAILS                                
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+
+   //------------------------------------
+   // Détail d'un rôle
+   //------------------------------------
+   public function detailRole($id) { 
+
+        $pdo = Connect::seConnecter();
+
+        $detailRole = $pdo->prepare("
+            SELECT r.id_role, r.nom_role, f.titre_film, 
+            CONCAT(prenom_individu, ' ', nom_individu) AS individu
+            FROM role r
+            INNER JOIN jouer_dans jd ON jd.id_role = r.id_role
+            INNER JOIN acteur a ON a.id_acteur = jd.id_acteur
+            INNER JOIN film f ON f.id_film = jd.id_film
+            INNER JOIN individu i ON i.id_individu = a.id_individu
+            WHERE r.id_role = :id_role
+        ");
+        $detailRole->execute(["id_role" => $id]);
+
+        require "view/detailRole.php";
+    }
+
+   //------------------------------------
+   // Détail d'un genre
+   //------------------------------------
+   public function detailGenre($id) { 
+
+    $pdo = Connect::seConnecter();
+
+    $detailNomGenre = $pdo->prepare("
+        SELECT g.id_genre, g.libelle_genre
+        FROM genre g
+        WHERE g.id_genre = :id_genre
+    ");
+    $detailNomGenre->execute(["id_genre" => $id]);
+
+    $detailFilmsGenre = $pdo->prepare("
+        SELECT f.titre_film 
+        FROM genre g
+        INNER JOIN appartenir a ON a.id_genre = g.id_genre
+        INNER JOIN film f ON f.id_film = a.id_film
+        WHERE g.id_genre = :id_genre
+    ");
+    $detailFilmsGenre->execute(["id_genre" => $id]);
+
+    require "view/detailGenre.php";
+}
 
    //------------------------------------
    // Détail d'un acteur
    //------------------------------------
    public function detailActeur($id) { 
 
-    $pdo = Connect::seConnecter();
+   $pdo = Connect::seConnecter();
 
     $detailActeur = $pdo->prepare("
          SELECT CONCAT(i.prenom_individu, ' ', i.nom_individu) AS personne, 
@@ -91,7 +145,7 @@ class CinemaController {
          INNER JOIN acteur a ON a.id_individu = i.id_individu
          WHERE a.id_acteur = :id_acteur
     ");
-     $detailActeur->execute(["id_acteur" => $id]);
+    $detailActeur->execute(["id_acteur" => $id]);
      
     $detailFilmsActeur = $pdo->prepare("
         SELECT f.titre_film, r.nom_role 
@@ -185,6 +239,90 @@ class CinemaController {
         require "view/detailFilms.php";
     }
 
-}
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+//  GESTION DES INSERT INTO
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+    
+   //------------------------------------
+   // Ajout d'un genre
+   //------------------------------------
+    public function addGenre()
+    {
+        $pdo = Connect::seConnecter();
+        if (isset ($_POST["submit"])) {
+            $nomGenre = filter_var($_POST["nomGenre"], FILTER_SANITIZE_SPECIAL_CHARS);
 
+            $addGenre = $pdo->prepare("
+                INSERT INTO genre
+                VALUES (default, :nomGenre)
+            ");
+
+            $addGenre->bindValue(":nomGenre", $nomGenre);
+            $addGenre->execute();
+            header("Location:index.php?action=listGenres");
+        } 
+
+        require "view/addGenre.php";
+    }
+
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+//  GESTION DES UPDATE
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+    public function updGenre($id)
+    {
+        $pdo = Connect::seConnecter();
+
+
+        $genreAModifier = $pdo->prepare("
+            SELECT * FROM genre 
+            WHERE id_genre = :id_genre
+        ");
+        $genreAModifier->execute(["id_genre" => $id]);
+
+        if (isset ($_POST['submit'])) {
+            $libelleGenre = filter_var($_POST["libelleGenre"], FILTER_SANITIZE_SPECIAL_CHARS);
+            
+            $updGenre = $pdo->prepare("
+                UPDATE genre 
+                SET libelle_genre = :libelleGenre
+                WHERE id_genre = :id_genre
+            ");
+
+            $updGenre->execute([
+                "libelleGenre" => $libelleGenre,
+                "id_genre" => $id
+            ]);
+            // $updGenre->execute(["id_genre" => $id]);
+
+            header("Location:index.php?action=listGenres&id=$id");
+        }
+         
+        require "view/updGenre.php";
+    }
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+//  GESTION DES DELETE
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+
+    public function delGenre($id)
+    {
+        $pdo = Connect::seConnecter();
+
+        $deleteAppartenir = $pdo->prepare("
+            DELETE FROM Appartenir 
+            WHERE id_genre = :id_genre
+        ");
+        $deleteAppartenir->execute(["id_genre" => $id]);
+
+        $deleteGenre = $pdo->prepare("
+            DELETE FROM genre 
+            WHERE id_genre = :id_genre
+        ");
+        $deleteGenre->execute(["id_genre" => $id]);
+
+        header("Location:index.php?action=listGenres");
+    }
+
+}
 ?>

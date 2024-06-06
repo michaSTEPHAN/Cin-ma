@@ -5,9 +5,9 @@
 <div class="liste_roles">
     <?php foreach ($requete->fetchAll() as $roles) { ?>
         <div class="listRole">
-            <!-- <p class="libRole"><?= $roles['personne'] ?></p> -->
-            <p class="libRole"><?= $roles['nom_role'] ?></p>
-            <!-- <p class="libRole">Dans <?= $roles['titre_film'] ?></p> -->
+            <a href="index.php?action=detailRole&id=<?= $roles['id_role'] ?>">             
+                <p class="libRole"><?= $roles['nom_role'] ?></p>
+            </a>
         </div>               
     <?php } ?>    
 </div>
