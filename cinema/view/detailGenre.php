@@ -1,7 +1,7 @@
 <?php
     ob_start();
     $nomGenres      = $detailNomGenre->fetch();   
-    $filmsGenres    = $detailFilmsGenre->fetchAll();    
+    $filmsGenres    = $detailFilmsGenre->fetchAll();     
 ?>
 
 <div class="gestion_bouton">    
@@ -12,7 +12,6 @@
         <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
     </a>
 </div>
-
 
 <!-- ----------------------------------------------------- -->
 <!-- Affichage des films du genre                          -->

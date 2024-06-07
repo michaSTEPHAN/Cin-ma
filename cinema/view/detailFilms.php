@@ -55,7 +55,7 @@
             <img class="img_realisateur" src="<?= $film['photo_individu'] ?>">
         </a>
         <p class="nom_realisateur"><?= $film['personne'] ?></p>
-        <p class="dnaiss_realisateur"><?= $film['date_naissance_individu'] ?></p>
+        <p class="dnaiss_realisateur"><?= $film['dateNaissRea'] ?></p>
     </figure> 
 </div>    
 
@@ -71,7 +71,7 @@
                     <img class="img_realisateur" src="<?= $acteur['photo_individu'] ?>">       
                 </a>         
                 <p class="nom_acteur"><?= $acteur['individu'] ?></p>
-                <p class="dnaiss_acteur"><?= $acteur['date_naissance_individu'] ?></p>
+                <p class="dnaiss_acteur"><?= $acteur['dateNaissAct'] ?></p>
                 <p class="role_acteur">"<?= $acteur['nom_role'] ?>"</p>
             </figure>
         <?php } ?>   

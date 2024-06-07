@@ -5,6 +5,18 @@
 ?>
 
 <!-- ----------------------------------------------------- -->
+<!-- Affichage des boutons modifier & supprimer            -->
+<!-- ----------------------------------------------------- -->
+<div class="gestion_bouton">    
+    <a href="index.php?action=updRealisateur&id=<?= $realisateurs['id_individu'] ?>">         
+        <img class="img_modifier" src="public\img\icones\modifier.webp"></img>
+    </a>
+    <a href="index.php?action=delRealisateur&id=<?= $realisateurs['id_individu'] ?>">         
+        <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
+    </a>
+</div>
+
+<!-- ----------------------------------------------------- -->
 <!-- Affichage du détail d'un réalisateur                  -->
 <!-- ----------------------------------------------------- -->
 <div class="detail_realisateur">
@@ -15,7 +27,7 @@
         <h2 class = "titre_info_rea">Information sur le réalisateur</h2>        
         <div class="info2_rea">
             <p class = "info_rea">Date de naissance</p>
-            <p class = "rea_data"><?= $realisateurs['date_naissance_individu'] ?></p>
+            <p class = "rea_data"><?= $realisateurs['dateNaissRea'] ?></p>
         </div>
     </div>
 </div>

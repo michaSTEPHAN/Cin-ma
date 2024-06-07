@@ -128,7 +128,7 @@ class CinemaController {
     $detailFilmsGenre->execute(["id_genre" => $id]);
 
     require "view/detailGenre.php";
-}
+    }
 
    //------------------------------------
    // Détail d'un acteur
@@ -139,8 +139,9 @@ class CinemaController {
 
     $detailActeur = $pdo->prepare("
          SELECT CONCAT(i.prenom_individu, ' ', i.nom_individu) AS personne, 
-         i.date_naissance_individu, 
-         i.photo_individu
+         DATE_FORMAT(i.date_naissance_individu,'%d/%m/%Y') AS dateNaissAct, 
+         i.photo_individu,
+         i.id_individu
          FROM individu i
          INNER JOIN acteur a ON a.id_individu = i.id_individu
          WHERE a.id_acteur = :id_acteur
@@ -159,7 +160,7 @@ class CinemaController {
     $detailFilmsActeur->execute(["id_acteur" => $id]);
 
      require "view/detailActeur.php";
-}
+    }
 
    //------------------------------------
    // Détail d'un réalisateur
@@ -170,14 +171,14 @@ class CinemaController {
 
        $detailRealisateur = $pdo->prepare("
             SELECT CONCAT(i.prenom_individu, ' ', i.nom_individu) AS personne, 
-            i.date_naissance_individu, 
-            i.photo_individu
+            DATE_FORMAT(i.date_naissance_individu,'%d/%m/%Y') AS dateNaissRea,             
+            i.photo_individu,
+            i.id_individu
             FROM individu i
             INNER JOIN realisateur re ON re.id_individu = i.id_individu
-            INNER JOIN film f ON f.id_realisateur = re.id_realisateur
-            WHERE f.id_realisateur = :id_realisateur
+            WHERE i.id_individu = :id_individu           
         ");
-        $detailRealisateur->execute(["id_realisateur" => $id]);
+        $detailRealisateur->execute(["id_individu" => $id]);
         
         $detailFilmsRealisateur = $pdo->prepare("
             SELECT f.titre_film
@@ -200,7 +201,7 @@ class CinemaController {
         $detailFilms = $pdo->prepare("
             SELECT *, REPLACE(SUBSTRING(SEC_TO_TIME(f.duree_film*60), 2, 4), ':', 'h') AS dureeFormat, 
             CONCAT(i.prenom_individu, ' ', i.nom_individu) AS personne,
-            i.date_naissance_individu, 
+            DATE_FORMAT(i.date_naissance_individu,'%d/%m/%Y') AS dateNaissRea,
             i.photo_individu,
             f.annee_sortie_film,
             f.id_realisateur        
@@ -218,7 +219,7 @@ class CinemaController {
             r.id_role, 
             nom_role, 
             a.id_acteur,
-            i.date_naissance_individu
+            DATE_FORMAT(i.date_naissance_individu,'%d/%m/%Y') AS dateNaissAct
             FROM jouer_dans jd
             INNER JOIN acteur a ON jd.id_acteur = a.id_acteur
             INNER JOIN individu i ON a.id_individu = i.id_individu
@@ -265,14 +266,114 @@ class CinemaController {
         require "view/addGenre.php";
     }
 
+   //------------------------------------
+   // Ajout d'un réalisateur
+   //------------------------------------
+   public function addRealisateur()
+    {
+        $pdo = Connect::seConnecter();
+        if (isset ($_POST["submit"])) {
+            
+            // INSERT INTO INDIVIDU
+            $prenomIndividu     = filter_var($_POST["prenomRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+            $nomIndividu        = filter_var($_POST["nomRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+            $sexeIndividu       = filter_var($_POST["sexeRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateNaissIndividu  = filter_var($_POST["dateNaissRea"], FILTER_SANITIZE_SPECIAL_CHARS);   
+
+            if(isset($_FILES['file'])){
+                $cheminPhoto = "public\img\\réalisateurs\\".$_FILES['file']['name']; 
+            }    
+            
+            $addIndividu = $pdo->prepare("
+                INSERT INTO individu (nom_individu, prenom_individu, sexe_individu, date_naissance_individu, photo_individu)
+                VALUES (:nomIndividu, :prenomIndividu, :sexeIndividu, :dateNaissIndividu, :photoIndividu)
+            ");
+
+            $addIndividu->execute([
+                "prenomIndividu" => $prenomIndividu,
+                "nomIndividu" => $nomIndividu,
+                "sexeIndividu" => $sexeIndividu,
+                "dateNaissIndividu" => $dateNaissIndividu,
+                "photoIndividu" => $cheminPhoto
+            ]);
+
+            // On récupère le dernier ig inseré
+            $idIndividu = $pdo->lastInsertId();
+
+            // INSERT INTO REALISATEUR
+            $addRealisateur = $pdo->prepare("
+                INSERT INTO realisateur (id_individu)
+                VALUES (:idIndividu)
+            ");
+            $addRealisateur->execute([
+                "idIndividu" => $idIndividu
+            ]);
+
+            // On revient à la liste des réalisateurs
+            header("Location:index.php?action=listRealisateurs");
+        }    
+        require "view/addRealisateur.php";
+    }
+
+   //------------------------------------
+   // Ajout d'un acteur
+   //------------------------------------
+   public function addActeur()
+   {
+       $pdo = Connect::seConnecter();
+       if (isset ($_POST["submit"])) {
+           
+           // INSERT INTO INDIVIDU
+           $prenomIndividu     = filter_var($_POST["prenomAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $nomIndividu        = filter_var($_POST["nomAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $sexeIndividu       = filter_var($_POST["sexeAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $dateNaissIndividu  = filter_var($_POST["dateNaissAct"], FILTER_SANITIZE_SPECIAL_CHARS);   
+
+           if(isset($_FILES['file'])){
+               $cheminPhoto = "public\img\\acteurs\\".$_FILES['file']['name']; 
+           }    
+           
+           $addIndividu = $pdo->prepare("
+               INSERT INTO individu (nom_individu, prenom_individu, sexe_individu, date_naissance_individu, photo_individu)
+               VALUES (:nomIndividu, :prenomIndividu, :sexeIndividu, :dateNaissIndividu, :photoIndividu)
+           ");
+
+           $addIndividu->execute([
+               "prenomIndividu" => $prenomIndividu,
+               "nomIndividu" => $nomIndividu,
+               "sexeIndividu" => $sexeIndividu,
+               "dateNaissIndividu" => $dateNaissIndividu,
+               "photoIndividu" => $cheminPhoto
+           ]);
+
+           // On récupère le dernier ig inseré
+           $idIndividu = $pdo->lastInsertId();
+
+           // INSERT INTO ACTEUR
+           $addActeur = $pdo->prepare("
+               INSERT INTO acteur (id_individu)
+               VALUES (:idIndividu)
+           ");
+           $addActeur->execute([
+               "idIndividu" => $idIndividu
+           ]);
+
+           // On revient à la liste des réalisateurs
+           header("Location:index.php?action=listActeurs");
+       }    
+       require "view/addActeur.php";
+    }   
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
 //  GESTION DES UPDATE
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+
+   //------------------------------------
+   // Update d'un genre
+   //------------------------------------
     public function updGenre($id)
     {
         $pdo = Connect::seConnecter();
-
 
         $genreAModifier = $pdo->prepare("
             SELECT * FROM genre 
@@ -296,15 +397,115 @@ class CinemaController {
             // $updGenre->execute(["id_genre" => $id]);
 
             header("Location:index.php?action=listGenres&id=$id");
-        }
-         
+        }         
         require "view/updGenre.php";
     }
+
+   //------------------------------------
+   // Update d'un réalisateur
+   //------------------------------------
+   public function updRealisateur($id)
+    {
+        $pdo = Connect::seConnecter();
+
+        $realisateurAModifier = $pdo->prepare("
+            SELECT * FROM individu
+            WHERE id_individu = :id_individu
+        ");
+        $realisateurAModifier->execute(["id_individu" => $id]);
+
+        if (isset ($_POST['submit'])) {
+           $prenomIndividu     = filter_var($_POST["prenomRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $nomIndividu        = filter_var($_POST["nomRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $sexeIndividu       = filter_var($_POST["sexeRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $dateNaissIndividu  = filter_var($_POST["dateNaissRea"], FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if(isset($_FILES['file'])){
+                $cheminPhoto = "public\img\\réalisateurs\\".$_FILES['file']['name']; 
+            }          
+
+        $updIndividu = $pdo->prepare("
+            UPDATE individu 
+            SET nom_individu = :nomIndividu
+            , prenom_individu = :prenomIndividu
+            , sexe_individu = :sexeIndividu
+            , date_naissance_individu = :dateNaissIndividu
+            , photo_individu = :photoIndividu
+            WHERE id_individu = :id_individu
+        ");
+
+        $updIndividu->execute([
+            "prenomIndividu" => $prenomIndividu,
+            "nomIndividu" => $nomIndividu,
+            "sexeIndividu" => $sexeIndividu,
+            "dateNaissIndividu" => $dateNaissIndividu,
+            "photoIndividu" => $cheminPhoto,
+            "id_individu" => $id            
+        ]);
+
+        header("Location:index.php?action=listRealisateurs&id=$id");    
+
+        }    
+
+        require "view/updRealisateur.php";
+    }    
+
+   //------------------------------------
+   // Update d'un acteur
+   //------------------------------------
+   public function updActeur($id)
+    {
+        $pdo = Connect::seConnecter();
+
+        $acteurAModifier = $pdo->prepare("
+            SELECT * FROM individu
+            WHERE id_individu = :id_individu
+        ");
+        $acteurAModifier->execute(["id_individu" => $id]);
+
+        if (isset ($_POST['submit'])) {
+           $prenomIndividu     = filter_var($_POST["prenomAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $nomIndividu        = filter_var($_POST["nomAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $sexeIndividu       = filter_var($_POST["sexeAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+           $dateNaissIndividu  = filter_var($_POST["dateNaissAct"], FILTER_SANITIZE_SPECIAL_CHARS);
+
+           if(isset($_FILES['file'])){
+                $cheminPhoto = "public\img\\acteurs\\".$_FILES['file']['name']; 
+           }  
+
+        $updIndividu = $pdo->prepare("
+            UPDATE individu 
+            SET nom_individu = :nomIndividu
+            , prenom_individu = :prenomIndividu
+            , sexe_individu = :sexeIndividu
+            , date_naissance_individu = :dateNaissIndividu
+            , photo_individu = :photoIndividu
+            WHERE id_individu = :id_individu
+        ");
+
+        $updIndividu->execute([
+            "prenomIndividu" => $prenomIndividu,
+            "nomIndividu" => $nomIndividu,
+            "sexeIndividu" => $sexeIndividu,
+            "dateNaissIndividu" => $dateNaissIndividu,
+            "photoIndividu" => $cheminPhoto,
+            "id_individu" => $id            
+        ]);
+
+        header("Location:index.php?action=listActeurs&id=$id");    
+
+        }    
+        
+        require "view/updActeur.php";
+    }    
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
 //  GESTION DES DELETE
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
 
+   //------------------------------------
+   // Delete d'un genre
+   //------------------------------------
     public function delGenre($id)
     {
         $pdo = Connect::seConnecter();
@@ -323,6 +524,50 @@ class CinemaController {
 
         header("Location:index.php?action=listGenres");
     }
+
+   //------------------------------------
+   // Delete d'un réalisateur
+   //------------------------------------
+   public function delRealisateur($id)
+   {
+       $pdo = Connect::seConnecter();
+
+       $deleteRealisateur = $pdo->prepare("
+           DELETE FROM realisateur 
+           WHERE id_individu = :id_individu
+       ");
+       $deleteRealisateur->execute(["id_individu" => $id]);
+
+       $deleteIndividu = $pdo->prepare("
+           DELETE FROM individu
+           WHERE id_individu = :id_individu
+       ");
+       $deleteIndividu->execute(["id_individu" => $id]);
+
+       header("Location:index.php?action=listRealisateurs");
+   }
+
+   //------------------------------------
+   // Delete d'un acteur
+   //------------------------------------
+   public function delActeur($id)
+   {
+       $pdo = Connect::seConnecter();
+
+       $deleteActeur = $pdo->prepare("
+           DELETE FROM realisateur 
+           WHERE id_individu = :id_individu
+       ");
+       $deleteActeur->execute(["id_individu" => $id]);
+
+       $deleteIndividu = $pdo->prepare("
+           DELETE FROM individu
+           WHERE id_individu = :id_individu
+       ");
+       $deleteIndividu->execute(["id_individu" => $id]);
+
+       header("Location:index.php?action=listActeurs");
+   }
 
 }
 ?>

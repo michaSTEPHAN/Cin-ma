@@ -8,8 +8,6 @@
     </a>
 </div>
 
-<!-- <a class="add_btn" href="index.php?action=addGenre">Ajouter</a> -->
-
 <div class="liste_genres">
     <?php foreach ($requete->fetchAll() as $genre) { ?>
         <p class="nom_genre">  

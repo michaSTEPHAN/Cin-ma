@@ -202,6 +202,9 @@ figure .nom_realisateur {
     width: 40px;
     height: 40px;
 }
+.gestion_bouton {
+    text-align: center;
+}
 
 /* -------------------------------------------- */
 /* Affichage de la liste des genres             */
@@ -216,7 +219,7 @@ figure .nom_realisateur {
     margin-left: 300px;
     margin-right: 300px;
 }
-.nom_genre {
+.nom_genre {    
     background-color: rgb(242, 243, 190);
     width: 200px;
     height: 60px;
@@ -250,6 +253,16 @@ figure .nom_realisateur {
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                                 DETAIL DU GENRE                                       */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.titre_det_genre {
+    text-align: center;
+}
+.info1_genre {
+    text-align: center;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 /*                                 DETAIL DU ROLE                                       */
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 .info1_role,
@@ -260,12 +273,13 @@ figure .nom_realisateur {
     text-align: center;
 }
 .role_nom {
-    width: 200px;
+    width: 100px;
     margin-bottom: 3px;
 }
 .info2_role,
 .info1_role {
-    justify-content: center;
+    justify-content: left;
+    margin-left: 810px;
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -315,7 +329,6 @@ figure .nom_realisateur {
 .info2_act {
     justify-content: center;
 }
-
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 /*                                   DETAIL DU FILM                                     */
@@ -394,4 +407,37 @@ figure .nom_realisateur {
 }
 .titre_det_acteur {
     text-align: center;
+}
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/*                          BOUTON AJOUT/MODIFICATION                                   */
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.UpdGenre,
+.UpdActeur,
+.UpdRealisateur,
+.AddGenre,
+.AddRea,
+.AddAct {
+    text-align: center; 
+}
+
+.submitUpdGenre,
+.submitUpdActeur,
+.submitUpdRealisateur,
+.submitAddGenre,
+.submitAddRea,
+.submitAddAct {    
+    justify-content: center;   
+    background-color: rgb(29, 106, 240);
+    padding: 10px 5px 10px 5px; 
+    border-radius: 10px;
+    border: 1px solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.labnomGenre,
+.labnomRea,
+.labnomAct {
+    margin-bottom: 5px;
+    text-align: center; 
 }

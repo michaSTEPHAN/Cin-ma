@@ -2,6 +2,12 @@
     ob_start();
 ?>
 
+<div class="gestion_bouton">    
+    <a href="index.php?action=addRealisateur">
+        <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
+    </a>
+</div>
+
 <div class="liste_realisateurs">
     <?php foreach ($requete->fetchAll() as $realisateur) { ?>
         <figure>
