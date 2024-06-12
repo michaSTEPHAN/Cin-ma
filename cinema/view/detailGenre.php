@@ -4,6 +4,9 @@
     $filmsGenres    = $detailFilmsGenre->fetchAll();     
 ?>
 
+<!-- ----------------------------------------------------- -->
+<!-- Affichage des boutons modifier & supprimer            -->
+<!-- ----------------------------------------------------- -->
 <div class="gestion_bouton">    
     <a href="index.php?action=updGenre&id=<?= $nomGenres['id_genre'] ?>">         
         <img class="img_modifier" src="public\img\icones\modifier.webp"></img>

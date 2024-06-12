@@ -23,8 +23,6 @@
         <label for="file">
             Photo du réalisateur : 
             <input type="file" name="file">
-            <!-- <button type="submit">Enregistrer</button>   
-            <input type="text" name="photoRea">             -->
         </label>  
     </p>
     <p class= "AddRea">

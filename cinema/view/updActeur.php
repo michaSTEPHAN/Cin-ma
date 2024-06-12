@@ -4,7 +4,7 @@
 ?>
 
 <form action="index.php?action=updActeur&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
-    <p class="labnomGenre">
+    <p class="labnomAct">
         <label>
             Prénom :
             <input type="text" name="prenomAct" value="<?php echo $nomActeur['prenom_individu'] ?>">
@@ -20,11 +20,7 @@
         <label>
             Date de naissance :
             <input type="date" name="dateNaissAct" value="<?php echo $nomActeur['date_naissance_individu'] ?>">
-        </label>    
-        <label for="file">
-            Photo de l'acteur : 
-            <input type="file" name="file">           
-        </label>      
+        </label>     
     </p>
     <p class= "UpdActeur">
         <input class= "submitUpdActeur" type="submit" name="submit" value="Modifier l'acteur">

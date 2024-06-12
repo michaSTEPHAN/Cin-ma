@@ -2,6 +2,12 @@
     ob_start();
 ?>
 
+<div class="gestion_bouton">    
+    <a href="index.php?action=addRole">
+        <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
+    </a>
+</div>
+
 <div class="liste_roles">
     <?php foreach ($requete->fetchAll() as $roles) { ?>
         <div class="listRole">

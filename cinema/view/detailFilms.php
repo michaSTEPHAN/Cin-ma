@@ -6,6 +6,18 @@
 ?>
 
 <!-- ----------------------------------------------------- -->
+<!-- Affichage des boutons modifier & supprimer            -->
+<!-- ----------------------------------------------------- -->
+<div class="gestion_bouton">    
+    <a href="index.php?action=updFilm&id=<?= $film['id_film'] ?>">         
+        <img class="img_modifier" src="public\img\icones\modifier.webp"></img>
+    </a>
+    <a href="index.php?action=delFilm&id=<?= $film['id_film'] ?>">         
+        <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
+    </a>
+</div>
+
+<!-- ----------------------------------------------------- -->
 <!-- Affichage du détail d'un film                         -->
 <!-- ----------------------------------------------------- -->
 <div class="detail_film">
@@ -64,6 +76,17 @@
 <!-- ----------------------------------------------------- -->
 <div class="acteurs_film">    
     <h2 class="titre_det_acteur">Les acteurs</h2>
+    <div class="gestion_bouton">  
+        <a href="index.php?action=addFilmActeur&id=<?= $film['id_film'] ?>">         
+            <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
+        </a> 
+        <a href="index.php?action=updFilmActeur&id=<?= $film['id_film'] ?>">         
+            <img class="img_modifier" src="public\img\icones\modifier.webp"></img>
+        </a>
+        <a href="index.php?action=delFilmActeur&id=<?= $film['id_film'] ?>">         
+            <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
+        </a>
+    </div>
     <div class="acteurs_du_film">
         <?php foreach ($acteurs as $acteur) { ?>    
             <figure> 

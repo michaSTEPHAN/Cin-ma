@@ -20,12 +20,7 @@
         <label>
             Date de naissance :
             <input type="date" name="dateNaissRea" value="<?php echo $nomRealisateur['date_naissance_individu'] ?>">
-        </label>        
-        <label for="file">
-            Photo du réalisateur :
-            <?php echo substr(strrchr($nomRealisateur['photo_individu'],'\\'),1) ?>            
-            <input type="file" name="file" value="<?php echo substr(strrchr($nomRealisateur['photo_individu'],'\\'),1) ?>">           
-        </label>      
+        </label>         
     </p>
     <p class= "UpdRealisateur">
         <input class= "submitUpdRealisateur" type="submit" name="submit" value="Modifier le réalisateur">

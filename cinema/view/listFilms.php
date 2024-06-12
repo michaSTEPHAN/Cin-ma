@@ -3,6 +3,15 @@
 ?>
 
 <!-- ----------------------------------------------------- -->
+<!-- Bouton ajouter un film                                -->
+<!-- ----------------------------------------------------- -->
+<div class="gestion_bouton">    
+    <a href="index.php?action=addFilm">
+        <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
+    </a>
+</div>
+
+<!-- ----------------------------------------------------- -->
 <!-- Affichage de la liste des films sous forme d'affiches -->
 <!-- ----------------------------------------------------- -->
 <div class="liste_films">    
