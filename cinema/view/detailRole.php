@@ -24,13 +24,9 @@
         <h2 class="titre_det_role">Information sur le rôle</h2>
         <?php foreach ($acteursRoles as $role) { ?>    
             <div class="info1_role">
-                <p class="role_nom">Film</p>
-                <p class="role_film"><?= $role['titre_film'] ?></p>
-            </div>
-            <div class="info2_role">
-                <p class="role_nom">Acteur</p>
-                <p class="role_act"><?= $role['individu'] ?></p>
-            </div>
+                <!-- <p class="role_nom">Film</p> -->
+                <p class="role_film">Film <?= $role['titre_film'] ?> joué par <?= $role['individu'] ?></p>
+            </div>           
         <?php } ?>  
 </div>    
 
@@ -38,8 +34,8 @@
 <!-- Affichage des titres et contenu des requêtes          -->
 <!-- ----------------------------------------------------- -->
 <?php
-    $titre = $nomRoles['nom_role'];
-    $titre_secondaire = $nomRoles['nom_role'];
+    $titre = "Rôle ".'"'.$nomRoles['nom_role'].'"';
+    $titre_secondaire = "Rôle ".'"'.$nomRoles['nom_role'].'"';
     $contenu = ob_get_clean();
     require "view/template.php";
 ?>

@@ -1,59 +1,72 @@
 <?php
     ob_start();
-    $film       = $filmAModifier->fetch();  
-    $filmGenre  = $genreAModifier->fetch();  
+    $film           = $filmAModifier->fetch();  
+    $filmGenre      = $genreAModifier->fetch();  
+    $genres         = $listGenres->fetchAll();    
 ?>
 
 <form action="index.php?action=updFilm&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
     <div class="pageUpdFilm">
         <p class="labnomFilm">
-            <label>
-                Titre :
-                <input type="text" maxlength="50" name="titreFilm" value="<?php echo $film['titre_film'] ?>">
-            </label>
-            <label>
-                Durée :
-                <input type="int" name="dureeFilm" value="<?php echo $film['duree_film'] ?>">
-            </label>
-            <label>
-                Synopsis :
-                <input type="text" maxlength="50" name="synopsisFilm" value="<?php echo $film['synopsis_film'] ?>">
-            </label>
-            <label>
-                Note :
-                <input type="int" name="noteFilm" value="<?php echo $film['note_film'] ?>">
-            </label>
-            <label>
-                Année de sortie :
-                <input type="int" name="anneeSortieFilm" value="<?php echo $film['annee_sortie_film'] ?>">
-            </label>                        
-            <label>
-                Genre :
-                <select name="genreFilm" value="<?= $filmGenre["id_genre"] ?>">
-                    <?php if ($listGenres) {
-                        foreach ($listGenres->fetchAll() as $genre) {
-                            $selected = ($genre["id_genre"] == $filmGenre["id_genre"]) ? 'selected' : ''; ?>
-                            <option value="<?= $genre["id_genre"] ?>" <?= $selected ?>>
-                                <?= $genre["libelle_genre"] ?>
-                            </option>
-                        <?php }
-                    } ?>
-                </select>
-            </label>
-
-            <label>
-                Réalisateur :
-                <select name="realisateurFilm" value="<?php $filmGenre['id_realisateur'] ?>">
-                    <?php if ($listRealisateurs) {
-                        foreach ($listRealisateurs->fetchAll() as $realisateur) {
-                            $selected = ($realisateur["id_realisateur"] == $film["id_realisateur"]) ? 'selected' : ''; ?>
-                            <option value="<?= $realisateur["id_realisateur"] ?>" <?= $selected ?>>
-                                <?= $realisateur["personne"] ?>
-                            </option>
-                        <?php }
-                    } ?>
-                </select>
-            </label>
+            <p class="lab1">
+                <label>
+                    Titre :
+                    <input type="text" maxlength="50" name="titreFilm" value="<?php echo $film['titre_film'] ?>">
+                </label>
+            </p>
+            <p class="lab2">
+                <label>
+                    Durée :
+                    <input type="int" name="dureeFilm" value="<?php echo $film['duree_film'] ?>">
+                </label>
+            </p>
+            <p class="lab3">
+                <label>
+                    Synopsis :
+                    <input type="text" maxlength="50" name="synopsisFilm" value="<?php echo $film['synopsis_film'] ?>">
+                </label>
+            </p>
+            <p class="lab4">
+                <label>
+                    Note :
+                    <input type="int" name="noteFilm" value="<?php echo $film['note_film'] ?>">
+                </label>
+            </p>
+            <p class="lab6">
+                <label>
+                    Année de sortie :
+                    <input type="int" name="anneeSortieFilm" value="<?php echo $film['annee_sortie_film'] ?>">
+                </label>  
+            </p>            
+            <p class="lab7">
+                <label>
+                    Genre :
+                    <checkbox name="id_genre">       
+                        <?php foreach ($genres as $genre) { ?>
+                            <input type="checkbox" name="genreFilm[]" value="<?= $genre["id_genre"] ?>"> 
+                            <?php 
+                                if ( isset( $_POST['value'])) echo 'checked="checked"'; 
+                            ?>
+                            <?= $genre["libelle_genre"]?><br />                       
+                        <?php } ?>
+                    </checkbox>
+                </label>
+            </p>       
+            <p class="lab8">
+                <label>
+                    Réalisateur :
+                    <select name="realisateurFilm" value="<?php $filmGenre['id_realisateur'] ?>">
+                        <?php if ($listRealisateurs) {
+                            foreach ($listRealisateurs->fetchAll() as $realisateur) {
+                                $selected = ($realisateur["id_realisateur"] == $film["id_realisateur"]) ? 'selected' : ''; ?>
+                                <option value="<?= $realisateur["id_realisateur"] ?>" <?= $selected ?>>
+                                    <?= $realisateur["personne"] ?>
+                                </option>
+                            <?php }
+                        } ?>
+                    </select>
+                </label>
+            </p>
         </p>    
     </div>
     <p class= "UpdFilm">

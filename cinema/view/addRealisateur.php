@@ -4,26 +4,36 @@
 
 <form class="formAddRea" action="index.php?action=addRealisateur" method="POST" enctype="multipart/form-data">
     <p class="labnomRea">
-        <label>
-            Prénom :
-            <input type="text" name="prenomRea">
-        </label>
-        <label>
-            Nom :
-            <input type="text" name="nomRea">
-        </label>
-        <label>
-            Sexe :
-            <input type="text" name="sexeRea">
-        </label>
-        <label>
-            Date de naissance :
-            <input type="date" name="dateNaissRea">
-        </label>  
-        <label for="file">
-            Photo du réalisateur : 
-            <input type="file" name="file">
-        </label>  
+        <p class="lab1">
+            <label>
+                Prénom :
+                <input type="text" name="prenomRea">
+            </label>
+        </p>
+        <p class="lab1">
+            <label>
+                Nom :
+                <input type="text" name="nomRea">
+            </label>
+        </p>
+        <p class="lab1">
+            <label>
+                Sexe :
+                <input type="text" name="sexeRea">
+            </label>
+        </p>
+        <p class="lab1">
+            <label>
+                Date de naissance :
+                <input type="date" name="dateNaissRea">
+            </label>  
+        </p>
+        <p class="lab1">
+            <label for="file">
+                Photo du réalisateur : 
+                <input type="file" name="file">
+            </label>
+        </p>      
     </p>
     <p class= "AddRea">
         <input class= "submitAddRea" type="submit" name="submit" value="Ajouter le réalisateur">

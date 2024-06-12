@@ -5,10 +5,12 @@
 
 <form action="index.php?action=updRole&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
     <p class="labnomRole">
-        <label>
-            Nom du rôle :
-            <input type="text" name="nomRole" value="<?php echo $nomRoles['nom_role'] ?>">
-        </label>
+        <p class="lab1">
+            <label>
+                Nom du rôle :
+                <input type="text" name="nomRole" value="<?php echo $nomRoles['nom_role'] ?>">
+            </label>
+        </p>
     </p>
     <p class= "UpdRole">
         <input class= "submitUpdRole" type="submit" name="submit" value="Modifier le rôle">

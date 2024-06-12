@@ -63,6 +63,8 @@
 <div class="realisateur_film">
     <figure>
         <h2 class="titre_det_realisateur">Le réalisateur</h2>
+        <div class="gestion_bouton">                 
+    </div>
         <a href="index.php?action=detailRealisateur&id=<?= $film['id_realisateur'] ?>">
             <img class="img_realisateur" src="<?= $film['photo_individu'] ?>">
         </a>
@@ -79,13 +81,10 @@
     <div class="gestion_bouton">  
         <a href="index.php?action=addFilmActeur&id=<?= $film['id_film'] ?>">         
             <img class="img_ajouter" src="public\img\icones\ajouter.webp"></img>
-        </a> 
-        <a href="index.php?action=updFilmActeur&id=<?= $film['id_film'] ?>">         
-            <img class="img_modifier" src="public\img\icones\modifier.webp"></img>
-        </a>
-        <a href="index.php?action=delFilmActeur&id=<?= $film['id_film'] ?>">         
+        </a>         
+        <!-- <a href="index.php?action=delFilmActeur&id=<?= $film['id_film'] ?>">         
             <img class="img_supprimer" src="public\img\icones\supprimer.webp"></img>
-        </a>
+        </a> -->
     </div>
     <div class="acteurs_du_film">
         <?php foreach ($acteurs as $acteur) { ?>    
@@ -105,8 +104,8 @@
 <!-- Affichage des titres et contenu des requêtes          -->
 <!-- ----------------------------------------------------- -->
 <?php
-    $titre = "Détail d'un film";
-    $titre_secondaire = "Détail d'un film";
+    $titre = "Détail sur le film ".'"'.$film['titre_film'].'"';
+    $titre_secondaire = "Détail sur le film ".'"'.$film['titre_film'].'"';
     $contenu = ob_get_clean();
     require "view/template.php";
 ?>

@@ -20,7 +20,7 @@
 
 <?php  
     $titre = "Liste des genres de film";
-    $titre_secondaire = "Liste des genre de film";
+    $titre_secondaire = "Liste des genres de film";
     $contenu = ob_get_clean();
     require "view/template.php";
 ?>

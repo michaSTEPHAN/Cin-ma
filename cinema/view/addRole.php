@@ -4,10 +4,12 @@
 
 <form class="formAddRole" action="index.php?action=addRole" method="POST" enctype="multipart/form-data">
     <p class="labnomRole">
-        <label>
-            Nom du rôle :
-            <input type="text" name="nomRole">
-        </label>
+        <p class="lab1">
+            <label>
+                Nom du rôle :
+                <input type="text" name="nomRole">
+            </label>
+        </p>
     </p>
     <p class= "AddRole">
         <input class= "submitAddRole" type="submit" name="submit" value="Ajouter le rôlee">

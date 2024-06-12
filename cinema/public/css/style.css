@@ -274,12 +274,11 @@ figure .nom_realisateur {
 }
 .role_nom {
     width: 100px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 .info2_role,
 .info1_role {
-    justify-content: left;
-    margin-left: 810px;
+    justify-content: center;    
 }
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
@@ -422,17 +421,20 @@ figure .nom_realisateur {
 .AddGenre,
 .AddRea,
 .AddFilm,
+.addFilmActeur,
 .AddAct {
-    text-align: center; 
+    margin-left: 200px;
 }
 
 .submitUpdGenre,
+.submitUpdRole,
 .submitUpdActeur,
 .submitUpdRealisateur,
 .submitAddGenre,
 .submitAddRole,
 .submitAddRea,
 .submitAddFilm,
+.submitAddFilmActeur,
 .submitAddAct {    
     justify-content: center;   
     background-color: rgb(29, 106, 240);
@@ -448,8 +450,18 @@ figure .nom_realisateur {
 .labnomRea,
 .labnomFilm,
 .labnomAct {    
-    margin-bottom: 5px;
-    text-align: center; 
+    margin-bottom: 20px;
+    text-align: center;         
+}
+
+.lab1,
+.lab2,
+.lab3,
+.lab4,
+.lab5,
+.lab6,
+.lab7,
+.lab8 {
+    margin-bottom: 10px;
     margin-left: 100px;
-    margin-right: 100px;
 }

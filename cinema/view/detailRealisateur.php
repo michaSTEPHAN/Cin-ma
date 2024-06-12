@@ -48,8 +48,8 @@
 <!-- Affichage des titres et contenu des requêtes          -->
 <!-- ----------------------------------------------------- -->
 <?php
-    $titre = $realisateurs['personne'];
-    $titre_secondaire = $realisateurs['personne'];
+    $titre = "Réalisateur : ".'"'.$realisateurs['personne'].'"';
+    $titre_secondaire = "Réalisateur : ".'"'.$realisateurs['personne'].'"';
     $contenu = ob_get_clean();
     require "view/template.php";
 ?>

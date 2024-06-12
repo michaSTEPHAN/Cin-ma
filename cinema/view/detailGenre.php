@@ -32,8 +32,8 @@
 <!-- Affichage des titres et contenu des requêtes          -->
 <!-- ----------------------------------------------------- -->
 <?php
-    $titre              = $nomGenres['libelle_genre'];
-    $titre_secondaire   = $nomGenres['libelle_genre'];
+    $titre              = "Genre ".'"'.$nomGenres['libelle_genre'].'"';
+    $titre_secondaire   = "Genre ".'"'.$nomGenres['libelle_genre'].'"';
     $contenu            = ob_get_clean();
     require "view/template.php";
 ?>

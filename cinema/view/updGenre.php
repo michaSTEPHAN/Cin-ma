@@ -5,10 +5,12 @@
 
 <form action="index.php?action=updGenre&id=<?= $_GET["id"] ?>" method="POST" enctype="multipart/form-data">
     <p class="labnomGenre">
-        <label>
-            Nom du genre :
-            <input type="text" name="libelleGenre" value="<?php echo $nomGenres['libelle_genre'] ?>">
-        </label>
+        <p class="lab1">
+            <label>
+                Nom du genre :
+                <input type="text" name="libelleGenre" value="<?php echo $nomGenres['libelle_genre'] ?>">
+            </label>
+        </p>
     </p>
     <p class= "UpdGenre">
         <input class= "submitUpdGenre" type="submit" name="submit" value="Modifier le genre">
