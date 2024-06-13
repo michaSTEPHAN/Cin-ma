@@ -1,7 +1,7 @@
 <?php
     ob_start();
     $film           = $filmAModifier->fetch();  
-    $filmGenre      = $genreAModifier->fetch();  
+    $filmGenre      = $genreAModifier->fetch(); 
     $genres         = $listGenres->fetchAll();    
 ?>
 
@@ -43,10 +43,17 @@
                     Genre :
                     <checkbox name="id_genre">       
                         <?php foreach ($genres as $genre) { ?>
-                            <input type="checkbox" name="genreFilm[]" value="<?= $genre["id_genre"] ?>"> 
-                            <?php 
-                                if ( isset( $_POST['value'])) echo 'checked="checked"'; 
-                            ?>
+                            <?php $checked = ''; ?>
+                            <!-- // On teste si le genre affiché est dans les genres du film -->
+                            <?php if (in_array($genre["id_genre"],$tabGenres)) {
+                                $checked='checked';
+                            } ?>
+
+                            <input type="checkbox" name="genreFilm[]" <?= $checked ?> value="<?= $genre["id_genre"] ?>"> 
+                            <!-- <?php 
+                                // if (isset( $_POST['value'])) echo 'checked="checked"'; 
+                                
+                            ?> -->
                             <?= $genre["libelle_genre"]?><br />                       
                         <?php } ?>
                     </checkbox>

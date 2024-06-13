@@ -13,7 +13,9 @@
     $titre_secondaire   = "";
     $contenu            = "";
     $action = $_GET['action'] ?? 'listFilms';
-    $id = (isset ($_GET["id"])) ? $_GET["id"] : "";
+    $id     = (isset ($_GET["id"])) ? $_GET["id"] : "";
+    $idFilm = (isset ($_GET["idFilm"])) ? $_GET["idFilm"] : "";
+    $idRole = (isset ($_GET["idRole"])) ? $_GET["idRole"] : "";
 
     if(isset($action)) {        
         switch ($action) {           
@@ -34,7 +36,8 @@
             case "listActeurs"          : $ctrlIndividu->listActeurs(); break;            
             case "detailActeur"         : $ctrlIndividu->detailActeur($id); break;
             case "addActeur"            : $ctrlIndividu->addActeur($id); break;
-            case "delActeur"            : $ctrlIndividu->delActeur($id); break; 
+            case "delActeur"            : $ctrlIndividu->delActeur($id); break;
+            case "delRoleActeur"        : $ctrlIndividu->delRoleActeur($id,$idFilm,$idRole); break;
             case "updActeur"            : $ctrlIndividu->updActeur($id); break; 
 
             case "listRoles"            : $ctrlFilm->listRoles(); break;         

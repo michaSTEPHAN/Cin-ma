@@ -48,11 +48,15 @@
 <!-- Affichage de la liste des films + rôles de l'acteur   -->
 <!-- ----------------------------------------------------- -->
 <div class="acteur_film">    
-    <h2 class="titre_act_film">Les films de l'<?= $libSexe ?></h2>
+    <h2 class="titre_act_film">Les rôles de l'<?= $libSexe ?></h2>
     <div class="act_films">
         <?php foreach ($filmsActeurs as $film) { ?>               
-            <p class="films_act"><?= $film['titre_film'] ?></p>
-            <p class="films_act"><?= $film['nom_role'] ?></p>                                        
+            <div class="aaa">
+                <p class="films_act"><?= $film['titre_film'] ?> [ <?= $film['nom_role'] ?> ]</p>                  
+                <a href="index.php?action=delRoleActeur&id=<?= $acteurs['id_individu'] ?> &idFilm=<?= $film['id_film'] ?> &idRole=<?= $film['id_role'] ?>">          
+                    <img class="img_supprimer_pt" src="public\img\icones\supprimer.webp"></img>
+                </a>             
+            </div>                             
         <?php } ?>   
     </div>      
 </div>    

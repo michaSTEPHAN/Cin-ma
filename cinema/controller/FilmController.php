@@ -28,7 +28,8 @@ class FilmController {
         $pdo = Connect::seConnecter();
         $requete = $pdo->query("
             SELECT r.nom_role, r.id_role
-            FROM role r                  
+            FROM role r   
+            ORDER BY r.nom_role               
         ");
             require "view/listRoles.php";
         }
@@ -118,7 +119,7 @@ class FilmController {
 //  GESTION DES INSERT INTO
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
 
-     //------------------------------------
+   //------------------------------------
    // Ajout d'un rôle
    //------------------------------------
    public function addRole()
@@ -148,13 +149,15 @@ class FilmController {
        $pdo = Connect::seConnecter();
 
        $listeGenre = $pdo->query("
-            SELECT * FROM genre                
+            SELECT * FROM genre 
+            ORDER BY libelle_genre               
         ");
 
         $listeRealisateur = $pdo->query("
-            SELECT id_realisateur, CONCAT(prenom_individu, ' ', nom_individu) AS personne
+            SELECT id_realisateur, CONCAT(nom_individu, ' ', prenom_individu) AS personne
             FROM individu i
             INNER JOIN realisateur r ON i.id_individu = r.id_individu
+            ORDER BY i.nom_individu  
         ");
 
        if (isset ($_POST["submit"])) {
@@ -223,14 +226,16 @@ class FilmController {
        $pdo = Connect::seConnecter();
 
        $listeActeur = $pdo->query("
-            SELECT CONCAT(prenom_individu, ' ', nom_individu) AS personne, 
+            SELECT CONCAT(nom_individu, ' ', prenom_individu) AS personne, 
             i.id_individu
             FROM individu i
-            INNER JOIN acteur a ON i.id_individu = a.id_individu                
+            INNER JOIN acteur a ON i.id_individu = a.id_individu  
+            ORDER BY i.nom_individu             
         ");
 
         $listeRole = $pdo->query("
-            SELECT * FROM role                
+            SELECT * FROM role
+            ORDER BY nom_role                 
         ");
 
         $filmAModifier = $pdo->prepare("
@@ -268,49 +273,10 @@ class FilmController {
             ]);
 
            // On revient à la liste des réalisateurs
-           header("Location:index.php?action=listFilms");
+           header("Location:index.php?action=detailFilms&id=$id");
         }    
        require "view/addFilmActeur.php";
    }
-
-//    public function addFilmActeur()
-//    {
-//        $pdo = Connect::seConnecter();
-//        if (isset ($_POST["submit"])) {
-            
-
-//             $listeActeur = $pdo->query("
-//                 SELECT CONCAT(prenom_individu, ' ', nom_individu) AS personne, 
-//                 i.id_individu
-//                 FROM individu i
-//                 INNER JOIN acteur a ON i.id_individu = a.id_individu
-//             ");
-
-//             $listeRole = $pdo->query("
-//                 SELECT * FROM role                
-//             ");
-                
-//             // INSERT INTO JOUER_DANS
-//             $idActeur    = filter_var($_POST["id_individu"], FILTER_SANITIZE_SPECIAL_CHARS);
-//             $idRole      = filter_var($_POST["id_role"], FILTER_SANITIZE_SPECIAL_CHARS);
-                
-//                 // // INSERT INTO JOUER_DANS
-//                 // $addActeurFilm = $pdo->prepare("
-//                 //     INSERT INTO jouer_dans (id_film, id_acteur, id_role)
-//                 //     VALUES (:idFilm, :idActeur, :idRole)
-//                 // ");
-                
-//                 // $addActeurFilm->execute([                
-//                 //     "idFilm" => $id,
-//                 //     "idActeur" => $idActeur,
-//                 //     "idRole" => $idRole
-//                 // ]);
-
-//                 // On revient à la liste des films
-//                 // header("Location:index.php?action=listFilms");
-//         }                   
-//         require "view/addFilmActeur.php";
-//     }   
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
 //  GESTION DES UPDATE
@@ -348,7 +314,7 @@ class FilmController {
        require "view/updRole.php";
    }
 
-    //------------------------------------
+   //------------------------------------
    // Update d'un film
    //------------------------------------
    public function updFilm($id)
@@ -367,22 +333,33 @@ class FilmController {
        ");
        $genreAModifier->execute(["id_film" => $id]);
 
+       $genreAModifier2 = $pdo->prepare("
+            SELECT g.id_genre
+            FROM film f
+            INNER JOIN appartenir a ON a.id_film = f.id_film
+            INNER JOIN genre g ON g.id_genre = a.id_genre
+            WHERE f.id_film = :id_film
+       ");
+       $genreAModifier2->execute(["id_film" => $id]);
+
+       // On créé un tableau contenant les genres du film que l'on testera au moment où on charge les genres (afin de cocher les genres du film)
+       $tabGenres = [];
+       foreach($genreAModifier2 as $g) {
+            $tabGenres[] = $g["id_genre"];
+       }
+
        $listRealisateurs = $pdo->query("
-            SELECT id_realisateur, CONCAT(prenom_individu, ' ', nom_individu) AS personne
+            SELECT id_realisateur, CONCAT(nom_individu, ' ', prenom_individu) AS personne
             FROM individu i
             INNER JOIN realisateur r ON i.id_individu = r.id_individu
+            ORDER BY i.nom_individu
        ");
 
        $listGenres = $pdo->query("
             SELECT *
             FROM genre
+            ORDER BY libelle_genre
        ");
-
-    //    $genresDuFilm = $pdo->prepare("
-    //         SELECT * FROM appartenir
-    //         WHERE id_film = :id_film
-    //     ");
-    //     $genresDuFilm->execute(["id_film" => $id]);
 
        if (isset ($_POST['submit'])) {
 
@@ -396,15 +373,15 @@ class FilmController {
             $idGenre            = filter_var($_POST["genreFilm"], FILTER_SANITIZE_SPECIAL_CHARS);
 
             $updFilm = $pdo->prepare("
-                    UPDATE film 
-                    SET titre_film = :titreFilm
-                    , duree_film = :dureeFilm
-                    , note_film = :noteFilm
-                    , synopsis_film = :synopsisFilm
-                    , annee_sortie_film = :anneeSortieFilm
-                    , id_realisateur = :realisateurFilm
-                    WHERE id_film = :id_film
-                ");
+                UPDATE film 
+                SET titre_film = :titreFilm
+                , duree_film = :dureeFilm
+                , note_film = :noteFilm
+                , synopsis_film = :synopsisFilm
+                , annee_sortie_film = :anneeSortieFilm
+                , id_realisateur = :realisateurFilm
+                 WHERE id_film = :id_film
+            ");
 
             $updFilm->execute([
                 "titreFilm" => $titreFilm,
@@ -416,7 +393,7 @@ class FilmController {
                 "id_film" => $id  
             ]);
 
-            
+            // GESTION DU GENRE DU FILM
             $deleteAppartenir = $pdo->prepare("
                 DELETE FROM appartenir
                 WHERE id_film = :id_film
@@ -435,17 +412,6 @@ class FilmController {
                      "idGenre" => $valeur,
                 ]); 
             }
-
-            // $updAppartenir = $pdo->prepare("
-            //     UPDATE appartenir
-            //     SET id_genre = :id_genre
-            //     WHERE id_film = :id_film
-            // ");
-
-            // $updAppartenir->execute([                
-            //     "id_film" => $id,
-            //     "id_genre" => $idGenre 
-            // ]);
 
          header("Location:index.php?action=listFilms&id=$id");    
 
@@ -501,6 +467,5 @@ class FilmController {
 
        header("Location:index.php?action=listFilms");
    }
-
 
 }    

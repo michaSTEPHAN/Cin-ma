@@ -328,6 +328,13 @@ figure .nom_realisateur {
 .info2_act {
     justify-content: center;
 }
+.aaa {
+    display: flex;
+    justify-content: center;
+}
+.img_supprimer_pt {
+    height: 20px;
+}
 
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */

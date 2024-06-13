@@ -7,7 +7,8 @@ class IndividuController {
 
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
 //  AFFICHAGE DES LISTES                         
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   
+
     //------------------------------------
    // Liste des réalisateurs
    //------------------------------------
@@ -18,6 +19,7 @@ class IndividuController {
         FROM individu i
         INNER JOIN realisateur r ON i.id_individu = r.id_individu
         WHERE i.photo_individu is NOT NULL
+        ORDER by i.nom_individu
     ");
     require "view/listRealisateurs.php";
 }
@@ -32,6 +34,7 @@ class IndividuController {
             FROM individu i
             INNER JOIN acteur a ON i.id_individu = a.id_individu
             WHERE i.photo_individu is NOT NULL
+            ORDER by i.nom_individu
         ");
             require "view/listActeurs.php";
     }
@@ -60,7 +63,7 @@ class IndividuController {
      $detailActeur->execute(["id_acteur" => $id]);
       
      $detailFilmsActeur = $pdo->prepare("
-         SELECT f.titre_film, r.nom_role 
+         SELECT f.id_film, f.titre_film, r.id_role, r.nom_role 
          FROM individu i
          INNER JOIN acteur a ON a.id_individu = i.id_individu
          INNER JOIN jouer_dans jd ON jd.id_acteur = a.id_acteur
@@ -326,7 +329,7 @@ class IndividuController {
        $pdo = Connect::seConnecter();
 
        $deleteActeur = $pdo->prepare("
-           DELETE FROM realisateur 
+           DELETE FROM acteur
            WHERE id_individu = :id_individu
        ");
        $deleteActeur->execute(["id_individu" => $id]);
@@ -338,6 +341,37 @@ class IndividuController {
        $deleteIndividu->execute(["id_individu" => $id]);
 
        header("Location:index.php?action=listActeurs");
+   }
+
+   //------------------------------------
+   // Delete d'un rôle d'un acteur dans un film
+   //------------------------------------
+   public function delRoleActeur($id,$idFilm,$idRole)
+   {
+       $pdo = Connect::seConnecter();
+
+        $selActeur = $pdo->prepare("
+            SELECT id_acteur
+            FROM acteur a
+            WHERE a.id_individu = :id_individu
+        ");
+        $selActeur->execute(["id_individu" => $id]);
+        $noActeur = $selActeur->fetch();
+        $idActeur = $noActeur['id_acteur'];
+
+       $deleteJouerDans = $pdo->prepare("
+           DELETE FROM jouer_dans 
+           WHERE id_role = :id_role
+           AND id_film = :id_film
+           AND id_acteur = :id_acteur
+       ");
+       $deleteJouerDans->execute([
+            "id_role" => $idRole,
+            "id_film" => $idFilm,
+            "id_acteur" => $idActeur,
+        ]);
+
+       header("Location:index.php?action=detailFilms&id=$idFilm");
    }
 
 }    
